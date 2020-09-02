@@ -9,8 +9,9 @@
  *
  ******************************************************************************/
 
-import java.util.Comparator;
 import edu.princeton.cs.algs4.StdDraw;
+
+import java.util.Comparator;
 
 public class Point implements Comparable<Point> {
 
@@ -108,13 +109,20 @@ public class Point implements Comparable<Point> {
      */
     public Comparator<Point> slopeOrder() {
         /* YOUR CODE HERE */
-        return new SlopeComparator();
+        return new SlopeComparator(this);
 
     }
 
     private static class SlopeComparator implements Comparator<Point> {
+        private final Point point;
+        private SlopeComparator(Point point){
+            this.point = point;
+        }
+
         public int compare(Point a, Point b) {
-            return a.compareTo(b);
+            Double slopeA = this.point.slopeTo(a);
+            Double slopeB = this.point.slopeTo(b);
+            return slopeA.compareTo(slopeB);
         }
 
     }
@@ -142,12 +150,18 @@ public class Point implements Comparable<Point> {
         Point p4 = new Point(6, 9);
         Point p5 = new Point(5, 9);
 
-        double result = p1.slopeTo(p2);
-        System.out.println(result);
-        System.out.println(p1.compareTo(p2));
-        System.out.println(p2.slopeTo(p3));
-        System.out.println(p2.slopeTo(p4));
-        System.out.println(p2.slopeTo(p5));
 
+
+        double result = p1.slopeTo(p2);
+        //System.out.println(result);
+        //System.out.println(p1.compareTo(p2));
+        //System.out.println(p2.slopeTo(p3));
+        //System.out.println(p2.slopeTo(p4));
+        //System.out.println(p2.slopeTo(p5));
+
+        Point p = new Point(30371, 17761);
+        Point q = new Point(3141, 31017);
+        Point r = new Point( 30950, 28254);
+        System.out.println(p.slopeOrder().compare(q, r));
     }
 }
