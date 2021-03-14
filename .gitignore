@@ -27,3 +27,9 @@ hs_err_pid*
 
 # intellij file
 *.idea
+
+# oot
+out
+
+# test
+test
